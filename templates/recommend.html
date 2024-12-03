@@ -163,6 +163,50 @@
 	.footer span {
 		color: #fff;
 	}
+
+
+	/* Form Design */
+	.pre_form {
+		padding: 40px;
+		background-color: #292929;
+		border-radius: 10px;
+		margin-top: 40px;
+
+	}
+
+	.pre_form label {
+		color: #ffffff;
+	}
+
+	.pre_form input {
+		width: 100%;
+		padding: 5px 10px;
+		margin-bottom: 10px;
+	}
+
+	.custom_btn {
+		text-align: center;
+	}
+
+	.custom_btn button {
+		background-color: #038C25;
+		border: #038C25 solid 2px;
+		color: #fff;
+		display: inline-block;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 16px;
+		transition: .3s;
+		margin-top: 20px;
+	}
+
+	.custom_btn button:hover {
+		background-color: #ffffff;
+		border: #038C25 solid 2;
+		color: #038C25;
+	}
+
+	
 </style>
 
 <body style="background-color: black">
@@ -184,58 +228,57 @@
 		<div class="pre_form">
 			<form action="/predict_group" method="post">
 				<div class="row">
-					<div class="col-md-6">
-						<label for="age">Age: </label><input type="number" name="age" required><br>
+					<div class="col-md-6 ">
+						<label for="age">Age: </label><input type="number" name="age" min="14" max="24" required><br>
 					</div>
-					<div class="col-md-6">
-						<label for="location">Location (0 = Rural, 1 = Urban): </label><input type="number"
-							name="location" required>
+					<div class="col-md-6 ">
+						<label for="location">Location (0 = Rural, 1 = Urban , 2 = City): </label><input type="number"
+							name="location" min="0" max="3" required>
 					</div>
-					<div class="col-md-6"><label for="family_size">Family Size: </label><input type="number"
-							name="family_size" required>
+					<div class="col-md-6 "><label for="family_size">Family Size: </label><input type="number"
+							name="family_size" min="1" max="20" required>
 
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 ">
 						<label for="studytime">Study Time (hours/day): </label><input type="number" name="studytime"
-							required>
+							min="1" max="24" required>
 					</div>
-					<div class="col-md-6">
-						<label for="attendance">Attendance (%): </label><input type="number" name="attendance"
+					<div class="col-md-6 ">
+						<label for="attendance">Attendance (%): </label><input type="number" name="attendance" min="0"
+							max="100" required><br>
+
+					</div>
+					<div class="col-md-6 ">
+						<label for="english">English Score: </label><input type="number" name="english" min="0"
+							max="100" required><br>
+					</div>
+					<div class="col-md-6 ">
+						<label for="math">Math Score: </label><input type="number" name="math" min="0" max="100"
 							required><br>
 
 					</div>
-					<div class="col-md-6">
-						<label for="english">English Score: </label><input type="number" name="english" required><br>
-					</div>
-					<div class="col-md-6">
-						<label for="math">Math Score: </label><input type="number" name="math" required><br>
+					<div class="col-md-6 ">
+						<label for="science">Science Score: </label><input type="number" name="science" min="0"
+							max="100" required><br>
 
 					</div>
-					<div class="col-md-6">
-						<label for="science">Science Score: </label><input type="number" name="science" required><br>
-
-					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 ">
 						<label for="social_science">Social Science Score: </label><input type="number"
-							name="social_science" required>
+							name="social_science" min="0" max="100" required>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 ">
 						<label for="art_culture">Art & Culture Score: </label><input type="number" name="art_culture"
-							required>
+							min="0" max="100" required>
+					</div>
+					<div class="col-12">
+						<div class="custom_btn">
+							<button type="submit">Predict Group</button>
+						</div>
 					</div>
 				</div>
 
-				<button type="submit">Predict Group</button>
 			</form>
 		</div>
-		{% if stu_group %}
-		<div class="output">
-			<h2>Predicted Student Group: {{ stu_group }}</h2>
-		</div>
-		{% endif %}
-
-
-
 	</div>
 	<div class="footer">
 		<p>&copy; GUB 212 & 201 Batch ,

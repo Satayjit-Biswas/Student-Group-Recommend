@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+</head>
+<style>
+    .text-white {
+        color: rgb(0, 0, 0);
+    }
+
+    .navbar {
+        background-color: #038C25;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        min-height: 90px;
+        width: 100%;
+        z-index: 999;
+    }
+
+    .navmenu {
+        max-width: 1200px;
+        min-height: 90px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .gap {
+        margin-top: 100px;
+    }
+
+    .navmenu a,
+    .navmenu li a {
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .navmenu li a:hover {
+        color: black;
+        border-radius: 10px;
+    }
+
+    .navbar-brand,
+    .logo,
+    .nav {
+        width: 33.33%;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .logo img {
+        max-height: 90px;
+    }
+
+    ul.nav.navbar-nav {
+        display: flex;
+        align-items: flex-end;
+        justify-content: end;
+    }
+
+    h1 {
+        color: #868686;
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .hero {
+        min-height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+
+    /* output */
+    .output {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .output_box {
+        position: relative;
+        background-color: #ffffff;
+        padding: 30px;
+        height: 200px;
+        width: 400px;
+        text-align: center;
+        border-radius: 10px;
+        border: #038C25 solid 2px;
+        box-shadow: 0px 0px 22px 3px #038C25;
+
+    }
+
+    .output_box img {
+        width: 95px;
+        position: absolute;
+        right: -34px;
+        bottom: -24px;
+        transform: rotateZ(30deg);
+
+    }
+.output_box h4{
+    font-size: 20px;
+    font-weight: 700;
+}
+    /* footer  */
+    .footer{
+		height: 70px;
+		text-align: center;
+		background-color: #038C25;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #000;
+		margin-top: 40px;
+	}
+	.footer p{
+		margin: 0;
+	}
+	.footer span{
+		color: #fff;
+	}
+</style>
+
+<body style="background-color: black">
+    <nav class="navbar">
+        <div class="navmenu">
+            <a class="navbar-brand" href="/">Thesis GUI</a>
+            <!-- <img src="GUB_logo.png" alt="GUB_logo"> -->
+            <div class="logo"> <img src="{{ url_for('static', filename='img/GUB_logo.png') }}" alt="Example Image">
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+                <li><a>Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="gap"></div>
+    <div class="container hero">
+
+        {% if stu_group %}
+        <div class="output">
+            <div class="output_box">
+                <h2>Congratulation <img src="{{ url_for('static', filename='img/rose.gif') }}" alt="Example Image"></h2>
+                <h3>You Can Select:-</h3>
+                <h4>{{ stu_group }}</span>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+
+
+    <div class="footer">
+        <p>&copy; GUB 212 & 201 Batch ,
+            <script>document.write(new Date().getFullYear());</script> <span>( For Thesis Purpose )</span>
+        </p>
+    </div>
+</body>
+
+</html>

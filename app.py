@@ -59,9 +59,11 @@ def predict_group():
         # Make prediction
         predicted_group = rf_model.predict([user_input])
         predicted_group_label = group_mapping.get(predicted_group[0], "Unknown")  # Map the numeric result to label
-        return render_template('recommend.html', stu_group=predicted_group_label)
+        
+        # Render a separate page to display the result
+        return render_template('predict_group.html', stu_group=predicted_group_label)
     else:
-        return render_template('recommend.html', stu_group="Model is not available for prediction at the moment.")
+        return render_template('predict_group.html', stu_group="Model is not available for prediction at the moment.")
 
 if __name__ == '__main__':
     app.run(debug=True)
