@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Recommender System</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+</head>
+<style>
+	.text-white {
+		color: rgb(0, 0, 0);
+	}
+
+	.navbar {
+		background-color: #038C25;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		top: 0;
+		min-height: 90px;
+		width: 100%;
+		z-index: 999;
+	}
+
+	.navmenu {
+		max-width: 1200px;
+		min-height: 90px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.gap {
+		margin-top: 100px;
+	}
+
+	.navmenu a,
+	.navmenu li a {
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		transition: 0.3s;
+	}
+
+	.navmenu li a:hover {
+		color: black;
+		border-radius: 10px;
+	}
+
+	.navbar-brand,
+	.logo,
+	.nav {
+		width: 33.33%;
+	}
+
+	.logo {
+		text-align: center;
+	}
+
+	.logo img {
+		max-height: 90px;
+	}
+
+	ul.nav.navbar-nav {
+		display: flex;
+		align-items: flex-end;
+		justify-content: end;
+	}
+
+	h1 {
+		color: #868686;
+		font-size: 22px;
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.hero {
+		min-height: calc(100vh - 100px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.std_box {
+		margin-top: 50px;
+	}
+
+	.card {
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		margin: 5px 0;
+	}
+
+	.card_img {
+		padding: 20px;
+	}
+
+	.card_img img {
+		background-color: #e2e2e2;
+		padding: 5px 5px 0 5px;
+	}
+
+	.card_text {
+		margin-left: 20px 0;
+		padding-left: 20px;
+		border-left: #038C25 solid 2px;
+	}
+
+	.card_text h2 {
+		font-size: 18px;
+		font-weight: 600;
+		color: #038C25;
+	}
+
+	.card_text p {
+		font-size: 12px;
+	}
+
+	.std_grup {
+		text-align: center;
+		padding: 20px 0;
+		color: #ffffff;
+		position: relative;
+	}
+
+	.std_grup::after {
+		position: absolute;
+		content: "";
+		width: 100%;
+		background-color: #e2e2e2;
+		height: 1px;
+		left: 0;
+		top: 29px;
+		z-index: -1;
+	}
+
+	.std_grup span {
+		display: inline-block;
+		background-color: #000;
+		padding: 0 10px;
+	}
+
+	.footer {
+		height: 70px;
+		text-align: center;
+		background-color: #038C25;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #000;
+		margin-top: 40px;
+	}
+
+	.footer p {
+		margin: 0;
+	}
+
+	.footer span {
+		color: #fff;
+	}
+</style>
+
+<body style="background-color: black">
+	<nav class="navbar">
+		<div class="navmenu">
+			<a class="navbar-brand" href="/">Thesis GUI</a>
+			<!-- <img src="GUB_logo.png" alt="GUB_logo"> -->
+			<div class="logo"> <img src="{{ url_for('static', filename='img/GUB_logo.png') }}" alt="Example Image">
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/recommend">Recommend</a></li>
+				<li><a>Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="gap"></div>
+	<div class="container hero">
+		<div class="pre_form">
+			<form action="/predict_group" method="post">
+				<div class="row">
+					<div class="col-md-6">
+						<label for="age">Age: </label><input type="number" name="age" required><br>
+					</div>
+					<div class="col-md-6">
+						<label for="location">Location (0 = Rural, 1 = Urban): </label><input type="number"
+							name="location" required>
+					</div>
+					<div class="col-md-6"><label for="family_size">Family Size: </label><input type="number"
+							name="family_size" required>
+
+					</div>
+					<div class="col-md-6">
+						<label for="studytime">Study Time (hours/day): </label><input type="number" name="studytime"
+							required>
+					</div>
+					<div class="col-md-6">
+						<label for="attendance">Attendance (%): </label><input type="number" name="attendance"
+							required><br>
+
+					</div>
+					<div class="col-md-6">
+						<label for="english">English Score: </label><input type="number" name="english" required><br>
+					</div>
+					<div class="col-md-6">
+						<label for="math">Math Score: </label><input type="number" name="math" required><br>
+
+					</div>
+					<div class="col-md-6">
+						<label for="science">Science Score: </label><input type="number" name="science" required><br>
+
+					</div>
+					<div class="col-md-6">
+						<label for="social_science">Social Science Score: </label><input type="number"
+							name="social_science" required>
+					</div>
+					<div class="col-md-6">
+						<label for="art_culture">Art & Culture Score: </label><input type="number" name="art_culture"
+							required>
+					</div>
+				</div>
+
+				<button type="submit">Predict Group</button>
+			</form>
+		</div>
+		{% if stu_group %}
+		<div class="output">
+			<h2>Predicted Student Group: {{ stu_group }}</h2>
+		</div>
+		{% endif %}
+
+
+
+	</div>
+	<div class="footer">
+		<p>&copy; GUB 212 & 201 Batch ,
+			<script>document.write(new Date().getFullYear());</script> <span>( For Thesis Purpose )</span>
+		</p>
+	</div>
+</body>
+
+</html>
