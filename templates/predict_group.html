@@ -85,7 +85,7 @@
         justify-content: center;
     }
 
-    
+
 
     /* output */
     .output {
@@ -98,7 +98,7 @@
         position: relative;
         background-color: #ffffff;
         padding: 30px;
-        height: 200px;
+        min-height: 200px;
         width: 400px;
         text-align: center;
         border-radius: 10px;
@@ -115,27 +115,32 @@
         transform: rotateZ(30deg);
 
     }
-.output_box h4{
-    font-size: 20px;
-    font-weight: 700;
-}
+
+    .output_box h3 span {
+        font-size: 20px;
+        font-weight: 700;
+        color: #038C25;
+    }
+
     /* footer  */
-    .footer{
-		height: 70px;
-		text-align: center;
-		background-color: #038C25;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: #000;
-		margin-top: 40px;
-	}
-	.footer p{
-		margin: 0;
-	}
-	.footer span{
-		color: #fff;
-	}
+    .footer {
+        height: 70px;
+        text-align: center;
+        background-color: #038C25;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        margin-top: 40px;
+    }
+
+    .footer p {
+        margin: 0;
+    }
+
+    .footer span {
+        color: #fff;
+    }
 </style>
 
 <body style="background-color: black">
@@ -154,18 +159,19 @@
     </nav>
     <div class="gap"></div>
     <div class="container hero">
-
-        {% if stu_group %}
+        {% if group %}
         <div class="output">
             <div class="output_box">
                 <h2>Congratulation <img src="{{ url_for('static', filename='img/rose.gif') }}" alt="Example Image"></h2>
-                <h3>You Can Select:-</h3>
-                <h4>{{ stu_group }}</span>
+                <h3>You Can Select:- <span>{{ group }}</span></h3>
+                {% for key, value in probabilities.items() %}
+                    <p>{{ key }} Probabilitie Of : {{ value }}%</p>
+                {% endfor %}
             </div>
-        </div>
-
+        </div> 
+        {% endif %}
     </div>
-    {% endif %}
+
 
 
     <div class="footer">
